@@ -30,7 +30,11 @@ passport.use(new GoogleStrategy({
                 if (exisitingUser) {
                     done(null, exisitingUser);
                 } else {
+                    let profileData = profile._json;
                     let user = new User({
+                        name: profile.displayName,
+                        email: profileData.email || '',
+                        picture: profileData.picture || '',
                         googleId: profile.id
                     });
                     user.save((err) => {

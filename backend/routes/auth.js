@@ -9,7 +9,6 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback', passport.authenticate('google', {
     failureRedirect: '/login'
 }), function (req, res) {
-    req.session.token = req.user.token;
     res.redirect('/');
 });
 
