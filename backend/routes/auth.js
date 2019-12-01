@@ -6,9 +6,11 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }),function (req, res) {
-        req.session.token = req.user.token;
-        res.redirect('/');
+router.get('/google/callback', passport.authenticate('google', {
+    failureRedirect: '/login'
+}), function (req, res) {
+    req.session.token = req.user.token;
+    res.redirect('/');
 });
 
 router.get('/user', (req, res) => {
